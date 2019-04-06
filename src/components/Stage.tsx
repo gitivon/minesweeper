@@ -1,9 +1,9 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent, useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { useMine, IStageSize } from '../hooks/mine';
 import { Point } from './Point';
 
-interface IStageProps {
+export interface IStageProps {
   size: IStageSize;
   count: number;
   restart?: any;
@@ -11,7 +11,9 @@ interface IStageProps {
 
 export const Stage: FunctionComponent<IStageProps> = ({ size, count, restart }) => {
   const [mines, frush] = useMine(size, count);
-  useEffect(frush, [restart]);
+  const [hide, setHide] = useState(false);
+  useEffect(() => setHide(!hide), [restart]);
+  useEffect(frush, [hide]);
   return (
     <StyledStage {...size}>
       {mines.map((box, x) => 
@@ -19,6 +21,7 @@ export const Stage: FunctionComponent<IStageProps> = ({ size, count, restart }) 
           <Point
             count={mineCount}
             key={`${x}-${y}`}
+            hide={hide}
           />
         )
       )}

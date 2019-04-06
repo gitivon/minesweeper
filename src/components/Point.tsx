@@ -1,20 +1,22 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 export interface IPointProps {
   count: number;
+  hide: boolean;
 }
 
-export const Point: FunctionComponent<IPointProps> = ({ count }) => {
-  const [ hasView, view ] = useState(true);
-  const changeView = () => view(true)
+export const Point: FunctionComponent<IPointProps> = ({ count, hide }) => {
+  const [ hasView, view ] = useState(false);
+  const changeView = () => view(true);
+  useEffect(() => view(false), [hide]);
   return (
     <StyledPoint
       hasView={hasView}
       onClick={changeView}
       hasMine={count === -1}
     >
-      {count === -1 ? '*' : count}
+      {hasView ? (count === -1 ? '*' : count) : null}
     </StyledPoint>
   );
 }

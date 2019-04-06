@@ -1,18 +1,60 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Stage } from './components/Stage';
+import { Stage, IStageProps } from './components/Stage';
+
+const initialStage = {
+  count: 40,
+  size: {
+    x: 16,
+    y: 16,
+  },
+}
 
 const App: React.FunctionComponent = () => {
-  const size = {
-    x: 15,
-    y: 10,
-  };
+  const [size, setSize] = React.useState(initialStage.size);
   const [game, newGame] = React.useState(0);
-  const restart = () => newGame(game + 1);
+  const [count, setCount] = React.useState(initialStage.count);
+  const [stage, setStage] = React.useState<IStageProps>(initialStage);
+  const change = (type: string) => (val: number) => {
+    setSize({
+      ...size,
+      [type]: val,
+    })
+  }
+  const restart = () => {
+    setStage({
+      count,
+      size,
+    });
+    newGame(game + 1)
+  };
   return <StyledApp>
-    <Stage size={size} count={30} restart={game} />
-    <Button onClick={restart}>重新开始({game})</Button>
+    <Stage size={stage.size} count={stage.count} restart={game} />
+    <Setting>
+      <Input label="x" value={size.x} onChange={change('x')} />
+      <Input label="y" value={size.y} onChange={change('y')} />
+      <Input label="count" value={count} onChange={setCount} />
+      <Button onClick={restart}>重新开始({game})</Button>
+    </Setting>
   </StyledApp>;
+}
+
+interface IInputProps {
+  value: number;
+  label: string;
+  onChange: (value: number) => void;
+}
+const Input: React.FunctionComponent<IInputProps> = (props) => {
+  const change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const v = parseInt(e.target.value, 10);
+    props.onChange(v || 0);
+  }
+  return (
+    <Label>
+      {props.label} {props.value}
+      <input type="number" value={props.value} onChange={change} />
+    </Label>
+  );
 }
 
 export default App;
@@ -25,6 +67,16 @@ const StyledApp = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const Button = styled.button`
+const Label = styled.label`
+  input {
+    margin: 0 5px;
+    width: 30px;
+  }
+`;
+const Setting = styled.div`
   margin-top: 15px;
+  display: flex;
+  align-items: center;
+`;
+const Button = styled.button`
 `;
