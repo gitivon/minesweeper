@@ -12,8 +12,8 @@ export interface IStageProps {
 export const Stage: FunctionComponent<IStageProps> = ({ size, count, restart }) => {
   const [mines, frush] = useMine(size, count);
   const [hide, setHide] = useState(false);
-  useEffect(() => setHide(!hide), [restart]);
-  useEffect(frush, [hide]);
+  useEffect(() => setHide(!hide), [restart]); // 点击重置按钮后先隐藏
+  useEffect(frush, [hide]); // 隐藏之后再刷新雷区
   return (
     <StyledStage {...size}>
       {mines.map((box, x) => 
