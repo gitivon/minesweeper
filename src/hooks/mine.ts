@@ -11,6 +11,8 @@ const getRandomNums = (range: number, count: number) => {
   return result;
 }
 
+export type IMines = number[][];
+
 // 获取周围地雷数量
 const getMineCount = (
   index: number, 
@@ -51,6 +53,7 @@ type IMines = number[][];
 
 export const useMine = (size: IStageSize, count: number): [IMines, () => void] => {
   const getTmpMines = () => {
+    console.log('reset');
     const tmpMines: IMines = [];
     let index = 0;
     // 生产随机地雷

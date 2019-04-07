@@ -1,27 +1,24 @@
 import React, { FunctionComponent, useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
-import { useMine, IStageSize } from '../hooks/mine';
-import { Point } from './Point';
+import { IStageSize, IMines } from '../hooks/mine';
+import { WrappedPoint } from 'src/containers/Point';
 
 export interface IStageProps {
+  mines: IMines;
   size: IStageSize;
   count: number;
   restart?: any;
 }
 
-export const Stage: FunctionComponent<IStageProps> = ({ size, count, restart }) => {
-  const [mines, frush] = useMine(size, count);
-  const [hide, setHide] = useState(false);
-  useEffect(() => setHide(!hide), [restart]); // 点击重置按钮后先隐藏
-  useEffect(frush, [hide]); // 隐藏之后再刷新雷区
+export const Stage: FunctionComponent<IStageProps> = (props) => {
+  const { mines, size, count, restart } = props;
   return (
     <StyledStage {...size}>
       {mines.map((box, x) => 
         box.map((mineCount, y) => 
-          <Point
+          <WrappedPoint
             count={mineCount}
             key={`${x}-${y}`}
-            hide={hide}
           />
         )
       )}
