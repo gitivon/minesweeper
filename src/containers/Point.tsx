@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState, useEffect } from 'react';
 import { useStore } from 'src/hooks/useStore';
 import { Point, IPointProps } from 'src/components/Point';
 
-type IWrappedPoint = Pick<IPointProps, 'count'>
+export type IWrappedPoint = Others<IPointProps, 'hide'>
 
 export const WrappedPoint: FunctionComponent<IWrappedPoint> = (props) => {
   const [state] = useStore();
@@ -10,8 +10,8 @@ export const WrappedPoint: FunctionComponent<IWrappedPoint> = (props) => {
   useEffect(() => setHide(!hide), [state.gameTimes]);
   return (
     <Point
-      count={props.count}
       hide={hide}
+      {...props}
     />
   );
 }

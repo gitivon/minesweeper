@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export interface IPointProps {
   count: number;
   hide: boolean;
+  onClick?: () => void;
 }
 
 export const Point: FunctionComponent<IPointProps> = ({ count, hide }) => {

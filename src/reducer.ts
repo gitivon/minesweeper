@@ -1,12 +1,13 @@
 import { Reducer, createContext } from 'react';
 
-export const initialState = {
+export const initialState: IState = {
   gameTimes: 0,
   stage: {
-    count: 40,
+    count: 10,
     x: 16,
     y: 16,
   },
+  steps: [],
 }
 
 interface IStageState {
@@ -17,6 +18,7 @@ interface IStageState {
 
 interface IState {
   stage: IStageState;
+  steps: number[];
   gameTimes: number;
 }
 
@@ -27,6 +29,8 @@ interface IAction {
 
 export const enum ActionTypes {
   SET_STAGE_SIZE,
+  CLICK_POINT,
+  SET_FLAG,
 }
 
 export type IuseStore = [IState, React.Dispatch<IAction>];
@@ -39,6 +43,8 @@ export const reducer: Reducer<IState, IAction> = (state, action) => {
         gameTimes: state.gameTimes + 1,
         stage: action.payload,
       };
+    case ActionTypes.CLICK_POINT:
+      return state;
     default:
       return state;
   }
