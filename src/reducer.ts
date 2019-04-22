@@ -1,14 +1,14 @@
-import { Reducer, createContext } from 'react';
+import { Reducer, createContext } from "react";
 
 export const initialState: IState = {
   gameTimes: 0,
   stage: {
     count: 10,
     x: 16,
-    y: 16,
+    y: 16
   },
-  steps: [],
-}
+  steps: []
+};
 
 interface IStageState {
   x: number;
@@ -27,10 +27,10 @@ interface IAction {
   payload: any;
 }
 
-export const enum ActionTypes {
+export enum ActionTypes {
   SET_STAGE_SIZE,
   CLICK_POINT,
-  SET_FLAG,
+  SET_FLAG
 }
 
 export type IuseStore = [IState, React.Dispatch<IAction>];
@@ -43,14 +43,16 @@ export const reducer: IReducer = (state, action) => {
       return {
         ...state,
         gameTimes: state.gameTimes + 1,
-        stage: action.payload,
+        stage: action.payload
       };
     case ActionTypes.CLICK_POINT:
       return state;
     default:
       return state;
   }
-}
+};
 
 export const StateContext = createContext(initialState);
-export const DispatchContext = createContext((() => 0) as React.Dispatch<IAction>);
+export const DispatchContext = createContext((() => 0) as React.Dispatch<
+  IAction
+>);

@@ -1,11 +1,10 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
-import { useStore } from 'src/hooks/useStore';
-import { Point, IPointProps } from 'src/components/Point';
-import { usePoint } from 'src/hooks/point';
+import React, { FunctionComponent, useState, useEffect } from "react";
+import { useStore } from "../hooks/useStore";
+import { Point, IPointProps } from "../components/Point";
 
-export type IWrappedPoint = Others<IPointProps, 'hide'>
+export type IWrappedPoint = Others<IPointProps, "hide">;
 
-export const WrappedPoint: FunctionComponent<IWrappedPoint> = (props) => {
+export const WrappedPoint: FunctionComponent<IWrappedPoint> = props => {
   const [state] = useStore();
   const [hide, setHide] = useState(false);
   useEffect(() => setHide(!hide), [state.gameTimes]);

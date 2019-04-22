@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useReducer, ReducerState, Reducer } from 'react';
-import { StateContext, DispatchContext } from 'src/reducer';
+import { StateContext, DispatchContext } from '../reducer';
 
 interface IProviderProps<R extends Reducer<any, any>> {
   reducer: R;
@@ -15,4 +15,4 @@ export const Provider: FunctionComponent<IProviderProps<Reducer<any, any>>> = (p
       </DispatchContext.Provider>
     </StateContext.Provider>
   );
-}
+};
