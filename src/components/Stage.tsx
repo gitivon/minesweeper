@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from 'react';
-import styled from 'styled-components';
-import { IStageSize, IMines } from '../hooks/mine';
-import { WrappedPoint, IWrappedPoint } from 'src/containers/Point';
+import React, { FunctionComponent } from "react";
+import styled from "styled-components";
+import { IStageSize, IMines } from "../hooks/mine";
+import { WrappedPoint, IWrappedPoint } from "../containers/Point";
 
 export interface IStageProps {
   mines: IMines;
@@ -9,26 +9,28 @@ export interface IStageProps {
   onClick: (index: number) => void;
 }
 
-export const Stage: FunctionComponent<IStageProps & Others<IWrappedPoint, 'count' | 'onClick'>> = (props) => {
+export const Stage: FunctionComponent<
+  IStageProps & Others<IWrappedPoint, "count" | "onClick">
+> = props => {
   const { mines, size } = props;
   const click = (idx: number) => () => {
     props.onClick(idx);
-  }
+  };
   let i = 0;
   return (
     <StyledStage {...size}>
-      {mines.map((box, x) => 
-        box.map((mineCount, y) => 
+      {mines.map((box, x) =>
+        box.map((mineCount, y) => (
           <WrappedPoint
             count={mineCount}
             key={`${x}-${y}`}
             onClick={click(i++)}
           />
-        )
+        ))
       )}
     </StyledStage>
   );
-}
+};
 
 const baseSize = 20;
 const StyledStage = styled.div<IStageSize>`
