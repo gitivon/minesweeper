@@ -4,12 +4,15 @@ import styled from 'styled-components';
 export interface IPointProps {
   count: number;
   hide: boolean;
-  onClick?: () => void;
+  onClick?: (status: boolean) => void;
 }
 
-export const Point: FunctionComponent<IPointProps> = ({ count, hide }) => {
+export const Point: FunctionComponent<IPointProps> = ({ count, hide, onClick }) => {
   const [ hasView, view ] = useState(false);
-  const changeView = () => view(true);
+  const changeView = () => {
+    // onClick && onClick(true);
+    view(true)
+  }
   useEffect(() => view(false), [hide]);
   return (
     <StyledPoint

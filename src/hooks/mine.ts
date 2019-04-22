@@ -53,7 +53,6 @@ type IMines = number[][];
 
 export const useMine = (size: IStageSize, count: number): [IMines, () => void] => {
   const getTmpMines = () => {
-    console.log('reset');
     const tmpMines: IMines = [];
     let index = 0;
     // 生产随机地雷

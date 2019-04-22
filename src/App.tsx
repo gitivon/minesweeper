@@ -1,12 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useReducer } from 'react';
 import styled from 'styled-components';
 import { Provider } from './containers/Provider';
 import { WrappedStage } from './containers/Stage';
 import { Setting } from './components/Setting';
+import { reducer, initialState } from './reducer';
 
 const App: FunctionComponent = () => {
   return (
-    <Provider>
+    <Provider reducer={reducer} initialState={initialState}>
       <StyledApp>
         <WrappedStage />
         <Setting />

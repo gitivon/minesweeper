@@ -35,7 +35,9 @@ export const enum ActionTypes {
 
 export type IuseStore = [IState, React.Dispatch<IAction>];
 
-export const reducer: Reducer<IState, IAction> = (state, action) => {
+export type IReducer = Reducer<IState, IAction>;
+
+export const reducer: IReducer = (state, action) => {
   switch(action.type) {
     case ActionTypes.SET_STAGE_SIZE:
       return {
