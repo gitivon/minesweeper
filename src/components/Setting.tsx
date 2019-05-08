@@ -35,7 +35,7 @@ interface IInputProps {
 }
 
 const Input: React.FunctionComponent<IInputProps> = props => {
-  const change = useCallback(() => (e: React.ChangeEvent<HTMLInputElement>) => {
+  const change = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const v = parseInt(e.target.value, 10);
     props.onChange(v || 0);
   }, []);
