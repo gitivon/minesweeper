@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, { FunctionComponent, useState, useCallback } from "react";
 import styled from "styled-components";
 import { useStore } from "../hooks/useStore";
 import { ActionTypes } from "../reducer";
@@ -35,10 +35,10 @@ interface IInputProps {
 }
 
 const Input: React.FunctionComponent<IInputProps> = props => {
-  const change = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const change = useCallback(() => (e: React.ChangeEvent<HTMLInputElement>) => {
     const v = parseInt(e.target.value, 10);
     props.onChange(v || 0);
-  };
+  }, []);
   return (
     <Label>
       {props.label}
