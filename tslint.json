@@ -1,9 +1,14 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "ordered-imports": false,
     "no-console": false
   },
+  "plugins": [
+    "react-hooks"
+  ],
   "linterOptions": {
     "exclude": [
       "config/**/*.js",

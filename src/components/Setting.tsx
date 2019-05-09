@@ -7,8 +7,8 @@ export const Setting: FunctionComponent = props => {
   const [state, dispatch] = useStore();
   const [x, setX] = useState(() => state.stage.x);
   const [y, setY] = useState(() => state.stage.y);
-  const [count, setCount] = useState(() => state.stage.count);
-  const submit = () =>
+  const [count, setCount] = useState(() => state.stage.count)
+  const submit = useCallback(() =>
     dispatch({
       payload: {
         count,
@@ -16,7 +16,8 @@ export const Setting: FunctionComponent = props => {
         y
       },
       type: ActionTypes.SET_STAGE_SIZE
-    });
+    })
+  , [count, dispatch, x, y]);
   return (
     <StyledSetting>
       <Input label="x" value={x} onChange={setX} />
@@ -38,7 +39,7 @@ const Input: React.FunctionComponent<IInputProps> = props => {
   const change = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const v = parseInt(e.target.value, 10);
     props.onChange(v || 0);
-  }, []);
+  }, [props]);
   return (
     <Label>
       {props.label}

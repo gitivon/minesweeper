@@ -7,7 +7,7 @@ export type IWrappedPoint = Others<IPointProps, "hide">;
 export const WrappedPoint: FunctionComponent<IWrappedPoint> = props => {
   const [state] = useStore();
   const [hide, setHide] = useState(false);
-  useEffect(() => setHide(!hide), [state.gameTimes]);
+  useEffect(() => setHide(!hide), [hide, state.gameTimes]);
   // usePoint(hide);
   useEffect(() => {
     console.log(hide)
