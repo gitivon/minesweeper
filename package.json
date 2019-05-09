@@ -18,7 +18,7 @@
     "lint": "eslint --fix --ext .tsx src"
   },
   "gitHooks": {
-    "precommit": "lint-staged"
+    "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "**/**.{ts, tsx}": [

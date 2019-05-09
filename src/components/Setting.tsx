@@ -7,7 +7,7 @@ export const Setting: FunctionComponent = props => {
   const [state, dispatch] = useStore();
   const [x, setX] = useState(() => state.stage.x);
   const [y, setY] = useState(() => state.stage.y);
-  const [count, setCount] = useState(() => state.stage.count)
+  const [count, setCount] = useState(() => state.stage.count);
   const submit = useCallback(() =>
     dispatch({
       payload: {
