@@ -48,5 +48,6 @@
     "redux-devtools-extension": "^2.13.8",
     "typescript": "^3.4.2",
     "yorkie": "^2.0.0"
-  }
+  },
+  "homepage": "https://gitivon.github.io/minesweeper"
 }
